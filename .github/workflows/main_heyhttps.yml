@@ -14,12 +14,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Set up Java version
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v1
         with:
-          distribution: 'microsoft'
           java-version: '17'
 
       - name: Build with Maven
@@ -30,7 +29,6 @@ jobs:
         with:
           name: java-app
           path: '${{ github.workspace }}/target/*.jar'
-          retention-days: 1
 
   deploy:
     runs-on: ubuntu-latest
@@ -51,5 +49,5 @@ jobs:
         with:
           app-name: 'heyhttps'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_16663E7DA3E34318A73D749333140C58 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9232C3C635D348989A78CC929188C49D }}
           package: '*.jar'
